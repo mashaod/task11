@@ -15,10 +15,10 @@ Class MySql extends Sql
     {
          parent::exec();
         
-         $resultMy = mysql_query($this->sql, $this->dbMy);
+         $resultMy = mysql_query("Select *  from `MY_TEST`", $this->dbMy);
          if(isset($resultMy) && !empty($resultMy))
          {
-             return $resultMy;
+             return $this->$resultMy;
          }
          else
          {
