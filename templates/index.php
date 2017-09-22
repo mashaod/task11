@@ -21,29 +21,22 @@
                 <!-- Default panel contents -->
                 <div class="panel-heading">
                     MySQL
-                    <p style="color:red"><?php echo $msgMy ?></p>
+                    <p><?php echo $msgMy ?></p>
                 </div>
 
                 <!-- Table -->
                 <table class="table">
-                    <?php 
-                    while ($row = mysql_fetch_array($result, MYSQL_NUM)) 
-                    {
-                    ?> 
                         <tr>
                           <td style="width:20%">User01</td>
-                          <td><?php echo $row[0] ?></td>
+                          <td><?php echo $result ?></td>
                         </tr>
-                    <?php
-                    }
-                    ?>
                  </table>
             </div>
     
             <div class="btn-group" role="group" aria-label="..." style="margin-bottom: 5%">
-                <button type="submit" name="Insert" class="btn btn-default">Insert</button>
-                <button type="submit" name="Update" class="btn btn-default">Update</button>
-                <button type="submit" name="Delete" class="btn btn-default">Delete</button>
+                <button type="submit" name="insert" value="insert" class="btn btn-default">Insert</button>
+                <button type="submit" name="update" value="update" class="btn btn-default">Update</button>
+                <button type="submit" name="delete" value="delete" class="btn btn-default">Delete</button>
             </div> 
                                                                          
         </form>

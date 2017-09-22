@@ -6,24 +6,21 @@ Class MySql extends Sql
     public function __construct()
     {
         $this->dbMy = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD_MY)
-    		    or die ("<br/>Error MySQL");
+    		or die ("<br/>Error MySQL");
         $connect = mysql_select_db('user1', $this->dbMy)
-    		    or die ("<br/>Error DB");
+    		or die ("<br/>Error DB");
     }
 
     public function exec()
     {
          parent::exec();
         
-         $resultMy = mysql_query("Select *  from `MY_TEST`", $this->dbMy);
-         if(isset($resultMy) && !empty($resultMy))
-         {
-             return $this->$resultMy;
-         }
+         $result = mysql_query($this->data['sql'], $this->dbMy);
+
+         if(isset($result) && !empty($result))
+             return $result;
          else
-         {
              throw new Exception("Wrong values");
-         }
     }
 }
 ?>

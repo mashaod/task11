@@ -6,31 +6,33 @@ include('lib/MyTest.php');
 
 try
 {
-    if($_POST['Insert'])
+    $msgMy;
+
+    if($_POST['insert'])
     {
-        $sqlInsert = $mySql->insert('MY_TEST','key','data')->values('User01', 'someText')->exec();
-        $mySql->restartVal();
+        $myTest = new MyTest();
+        $myTest->setKey('user_01');
+        $myTest->setData('some_text');
+        $msgMy = $myTest->save();
     }
-    elseif($_POST['Update'])
+    elseif($_POST['update'])
     {
-        $sqlUpdate = $mySql->update('MY_TEST')->set('data', 'newText')->where('key', 'User01')->exec();
-        $mySql->restartVal();
+        $myTest = new MyTest();
+        $myTest->find('user_01');
+        $myTest->setData('new_text');
+        $msgMy = $myTest->save();
     }
-    elseif($_POST['Delete'])
+    elseif($_POST['delete'])
     {
-        $sqlDelete = $mySql->delete('MY_TEST')->where('key', 'User01')->exec();
-        $mySql->restartVal();
+        $myTest = new MyTest();
+        $myTest->find('user_01');
+        $msgMy = $myTest->delete();
     }  
 
-$myTest = new MyTest();
-    
-$result = $myTest->find('User1');
+    $myTest = new MyTest();
+    $result = $myTest->find('user_01');
 
-   // $myTest->setKey('User01');
-   // $myTest->setData('Task11');
-   // $myTest->save();
-
-   // $result = $mySql->select('data')->from('MY_TEST')->where('key', 'User01')->exec();
+    !$result?$result = "No Data":true;
 }
 catch(Exception $error)
 {
